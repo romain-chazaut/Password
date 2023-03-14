@@ -28,3 +28,20 @@ def mot_de_passe():
             print("Le mot de passe est valide.")
     
 mot_de_passe()
+
+
+
+import hashlib
+str = 'password'
+
+result = hashlib.sha256(str.encode())
+print(result)
+#print("xxxxx : ", result.hexdigest())
+#print("Le mot de passe crypté est : ", result.block_size)
+#def crypt():
+        #hash_object = hashlib.sha256()
+        #hash_object.update(mot_de_passe.encode())
+        #hex_hash = hash_object.hexdigest()
+        #print(f"hash de la chaine '{mot_de_passe}' : {hex_hash}")
+        #crypt()
+#5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
