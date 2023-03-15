@@ -1,5 +1,14 @@
-#Je fais 4 listes de caractères pour tout ce qui doit être respecté dans le mot de passe.
+import hashlib
+import json
 
+try:
+    with open('passwords.json', 'r') as f:
+        passwords = json.load(f)
+except FileNotFoundError:
+    passwords = {}
+
+#Je définis une fonction mot_de_passe.
+#Je fais 4 listes de caractères pour tout ce qui doit être respecté dans le mot de passe.
 def mot_de_passe():
     lettres_min = ["a", "b", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
     lettres_maj = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
@@ -9,7 +18,7 @@ def mot_de_passe():
 #J'initialise une variable pour plus tard qui sera utilisée dans ma boucle.
     Test_password = False
     
-#J'utilise une while, qui fait en sorte que tant que les conditions sont respectées, Test-password revient True et le mdp sera ok. Sinon il demandera un nouveau mot de passe.
+#Boucle while qui permet à l'utilisateur d'entrer un mot de passe valide
     while not Test_password:
         password = input("Veuillez entrer votre mot de passe : ")
         if len(password) < 8:
@@ -27,24 +36,17 @@ def mot_de_passe():
         elif not any(char in caracteres_speciaux for char in password):
             print("Le mot de passe doit contenir au moins un caractère spécial.")
             Test_password = False
-        else:
+        else:                                      
             Test_password = True
             print("Le mot de passe est valide.")
+            result = hashlib.sha256(password.encode()).hexdigest()
+            passwords[password] = result
+            with open('passwords.json', 'w') as f:
+                json.dump(passwords, f)
+            return(result)
     
-mot_de_passe()   #cryptage du mot de passe.
-import hashlib
-str = 'password'
+print(mot_de_passe())
 
-result = hashlib.sha256(str.encode())
-print(result)
+# La fonction est appelée et le résultat est affiché à l'écran 
 
 
-#print("xxxxx : ", result.hexdigest())
-#print("Le mot de passe crypté est : ", result.block_size)
-#def crypt():
-        #hash_object = hashlib.sha256()
-        #hash_object.update(mot_de_passe.encode())
-        #hex_hash = hash_object.hexdigest()
-        #print(f"hash de la chaine '{mot_de_passe}' : {hex_hash}")
-        #crypt()
-#5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
