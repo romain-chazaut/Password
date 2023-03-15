@@ -28,9 +28,6 @@ def mot_de_passe():
             print("Le mot de passe est valide.")
     
 mot_de_passe()
-
-
-
 import hashlib
 str = 'password'
 
