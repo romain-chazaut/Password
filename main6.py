@@ -1,11 +1,15 @@
+#Je fais 4 listes de caractères pour tout ce qui doit être respecté dans le mot de passe.
+
 def mot_de_passe():
     lettres_min = ["a", "b", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
     lettres_maj = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     chiffres = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     caracteres_speciaux = ["!", "@", "#", "$", "%", "^", "&", "*"]
     
+#J'initialise une variable pour plus tard qui sera utilisée dans ma boucle.
     Test_password = False
     
+#J'utilise une while, qui fait en sorte que tant que les conditions sont respectées, Test-password revient True et le mdp sera ok. Sinon il demandera un nouveau mot de passe.
     while not Test_password:
         password = input("Veuillez entrer votre mot de passe : ")
         if len(password) < 8:
@@ -27,12 +31,14 @@ def mot_de_passe():
             Test_password = True
             print("Le mot de passe est valide.")
     
-mot_de_passe()
+mot_de_passe()   #cryptage du mot de passe.
 import hashlib
 str = 'password'
 
 result = hashlib.sha256(str.encode())
 print(result)
+
+
 #print("xxxxx : ", result.hexdigest())
 #print("Le mot de passe crypté est : ", result.block_size)
 #def crypt():
